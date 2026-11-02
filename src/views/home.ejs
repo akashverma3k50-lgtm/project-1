@@ -1,0 +1,241 @@
+<%- include('partials/head') %>
+<%- include('partials/header') %>
+
+<main id="mainContent">
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <!-- Ambient Aurora Glow Orbs -->
+    <div class="ambient-glow-orb orb-1" aria-hidden="true"></div>
+    <div class="ambient-glow-orb orb-2" aria-hidden="true"></div>
+    <div class="ambient-glow-orb orb-3" aria-hidden="true"></div>
+
+    <!-- Interactive Particle Constellation Canvas -->
+    <canvas id="heroCanvas" class="hero-canvas" aria-hidden="true"></canvas>
+
+    <div class="container hero-container">
+      <div class="hero-content">
+        <span class="badge hero-badge"><span class="pulse-dot" aria-hidden="true"></span><%= content.home.hero.badge %></span>
+        <h1 class="hero-heading"><%- content.home.hero.heading.replace('fast, modern websites', '<span class="shimmer-gradient-text">fast, modern websites</span>') %></h1>
+        <p class="hero-subheading"><%= content.home.hero.subheading %></p>
+        <div class="hero-actions">
+          <a href="<%= content.home.hero.primaryCta.link %>" class="btn btn-primary btn-lg">
+            <%= content.home.hero.primaryCta.text %>
+          </a>
+          <a href="<%= content.home.hero.secondaryCta.link %>" class="btn btn-outline btn-lg">
+            <%= content.home.hero.secondaryCta.text %>
+          </a>
+        </div>
+      </div>
+      <div class="hero-visual" aria-hidden="true">
+        <div class="hero-graphic-wrapper">
+          <img src="/images/hero-graphic.jpg" alt="Apex Digital Studio Modern Platform Interface" class="hero-image" loading="eager">
+          <div class="floating-badge badge-top-left">
+            <span class="badge-icon">⚡</span>
+            <div>
+              <strong>Sub-Second Speed</strong>
+              <small>&lt; 0.8s Core Web Vitals</small>
+            </div>
+          </div>
+          <div class="floating-badge badge-bottom-right">
+            <span class="badge-icon">🛡️</span>
+            <div>
+              <strong>Zero-Trust Hardened</strong>
+              <small>Strict CSP &amp; HSTS</small>
+            </div>
+          </div>
+          <div class="floating-badge badge-bottom-left">
+            <span class="badge-icon">📱</span>
+            <div>
+              <strong>Fluid Responsive</strong>
+              <small>Mobile &amp; Tablet Ready</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Tech Trust Marquee Banner (Modern Continuous Ticker) -->
+  <section class="tech-marquee-section" aria-label="Core Engineering Capabilities">
+    <div class="tech-marquee-wrapper">
+      <div class="tech-marquee-track">
+        <div class="tech-marquee-content">
+          <span class="marquee-item"><span class="marquee-icon">⚡</span> Sub-0.8s Core Web Vitals</span>
+          <span class="marquee-item"><span class="marquee-icon">🛡️</span> Zero-Trust CSP &amp; HSTS</span>
+          <span class="marquee-item"><span class="marquee-icon">🔷</span> Strict TypeScript Engine</span>
+          <span class="marquee-item"><span class="marquee-icon">🚀</span> In-Process Multi-Core Cluster</span>
+          <span class="marquee-item"><span class="marquee-icon">📦</span> Nginx 3-Node Load Balancing</span>
+          <span class="marquee-item"><span class="marquee-icon">🔒</span> HMAC-SHA256 CSRF Defense</span>
+          <span class="marquee-item"><span class="marquee-icon">💾</span> Parameterized SQLite Queries</span>
+          <span class="marquee-item"><span class="marquee-icon">🧪</span> Automated Vitest &amp; Playwright</span>
+          <span class="marquee-item"><span class="marquee-icon">🌐</span> Global Edge CDN Caching</span>
+          <span class="marquee-item"><span class="marquee-icon">🛡️</span> OWASP Top 10 Hardened</span>
+          <span class="marquee-item"><span class="marquee-icon">🚦</span> Dynamic IP Rate Limiting</span>
+          <span class="marquee-item"><span class="marquee-icon">🤖</span> Anti-Bot Honeypots &amp; Velocity Traps</span>
+          <span class="marquee-item"><span class="marquee-icon">📊</span> High-Performance Pino JSON Logging</span>
+          <span class="marquee-item"><span class="marquee-icon">⚙️</span> Docker Containerized CI/CD</span>
+          <span class="marquee-item"><span class="marquee-icon">🌙</span> Zero-Flash Dark &amp; Light Theme</span>
+          <span class="marquee-item"><span class="marquee-icon">♿</span> WCAG 2.1 AA Accessible</span>
+        </div>
+        <div class="tech-marquee-content" aria-hidden="true">
+          <span class="marquee-item"><span class="marquee-icon">⚡</span> Sub-0.8s Core Web Vitals</span>
+          <span class="marquee-item"><span class="marquee-icon">🛡️</span> Zero-Trust CSP &amp; HSTS</span>
+          <span class="marquee-item"><span class="marquee-icon">🔷</span> Strict TypeScript Engine</span>
+          <span class="marquee-item"><span class="marquee-icon">🚀</span> In-Process Multi-Core Cluster</span>
+          <span class="marquee-item"><span class="marquee-icon">📦</span> Nginx 3-Node Load Balancing</span>
+          <span class="marquee-item"><span class="marquee-icon">🔒</span> HMAC-SHA256 CSRF Defense</span>
+          <span class="marquee-item"><span class="marquee-icon">💾</span> Parameterized SQLite Queries</span>
+          <span class="marquee-item"><span class="marquee-icon">🧪</span> Automated Vitest &amp; Playwright</span>
+          <span class="marquee-item"><span class="marquee-icon">🌐</span> Global Edge CDN Caching</span>
+          <span class="marquee-item"><span class="marquee-icon">🛡️</span> OWASP Top 10 Hardened</span>
+          <span class="marquee-item"><span class="marquee-icon">🚦</span> Dynamic IP Rate Limiting</span>
+          <span class="marquee-item"><span class="marquee-icon">🤖</span> Anti-Bot Honeypots &amp; Velocity Traps</span>
+          <span class="marquee-item"><span class="marquee-icon">📊</span> High-Performance Pino JSON Logging</span>
+          <span class="marquee-item"><span class="marquee-icon">⚙️</span> Docker Containerized CI/CD</span>
+          <span class="marquee-item"><span class="marquee-icon">🌙</span> Zero-Flash Dark &amp; Light Theme</span>
+          <span class="marquee-item"><span class="marquee-icon">♿</span> WCAG 2.1 AA Accessible</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Value Proposition Section -->
+  <section class="section section-value">
+    <div class="container">
+      <div class="section-header text-center">
+        <h2 class="section-title"><%= content.home.valueProposition.title %></h2>
+        <p class="section-subtitle"><%= content.home.valueProposition.subtitle %></p>
+      </div>
+
+      <div class="grid grid-4 pillars-grid">
+        <% content.home.valueProposition.pillars.forEach(function(pillar, idx) { %>
+          <div class="card pillar-card">
+            <span class="card-watermark" aria-hidden="true">0<%= idx + 1 %></span>
+            <div class="pillar-icon-box" aria-hidden="true">
+              <span class="pillar-icon"><%= pillar.icon %></span>
+            </div>
+            <h3 class="pillar-title"><%= pillar.title %></h3>
+            <p class="pillar-desc"><%= pillar.description %></p>
+            <div class="card-glow-indicator" aria-hidden="true"></div>
+          </div>
+        <% }); %>
+      </div>
+    </div>
+  </section>
+
+  <!-- Graphic Showcase Gallery Section -->
+  <section class="section section-showcase">
+    <div class="container">
+      <div class="section-header text-center">
+        <span class="badge">Visual Craftsmanship</span>
+        <h2 class="section-title">Engineered for Elegance &amp; Raw Power</h2>
+        <p class="section-subtitle">Take a visual tour across our core capabilities, architecture, and design frameworks.</p>
+      </div>
+
+      <div class="grid grid-3 showcase-gallery">
+        <div class="showcase-card">
+          <div class="showcase-img-wrap">
+            <img src="/images/service-design.jpg" alt="UI and UX Web Design Graphic" class="showcase-img" loading="lazy">
+            <span class="showcase-pill">Bespoke UI/UX</span>
+          </div>
+          <div class="showcase-content">
+            <h3 class="showcase-title">Human-Centered Design</h3>
+            <p class="showcase-desc">Modern responsive layouts tailored with light, elegant brand aesthetics that captivate your audience.</p>
+            <a href="/services#web-design" class="link-arrow">Explore Design &rarr;</a>
+          </div>
+        </div>
+
+        <div class="showcase-card">
+          <div class="showcase-img-wrap">
+            <img src="/images/service-security.jpg" alt="Cloud Infrastructure and Security Graphic" class="showcase-img" loading="lazy">
+            <span class="showcase-pill">Zero-Trust Cloud</span>
+          </div>
+          <div class="showcase-content">
+            <h3 class="showcase-title">Enterprise Security &amp; Scale</h3>
+            <p class="showcase-desc">Multi-core auto-scaling, parameterized queries, strict CSP headers, and anti-bot defense.</p>
+            <a href="/services#web-development" class="link-arrow">Explore Engineering &rarr;</a>
+          </div>
+        </div>
+
+        <div class="showcase-card">
+          <div class="showcase-img-wrap">
+            <img src="/images/service-speed.jpg" alt="Speed Optimization and SEO Graphic" class="showcase-img" loading="lazy">
+            <span class="showcase-pill">Sub-Second Load</span>
+          </div>
+          <div class="showcase-content">
+            <h3 class="showcase-title">Speed &amp; SEO Velocity</h3>
+            <p class="showcase-desc">Edge CDN caching, Brotli/Gzip compression, and structured JSON-LD schema for peak visibility.</p>
+            <a href="/services#optimization-seo" class="link-arrow">Explore Optimization &rarr;</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Overview & Stats Section -->
+  <section class="section section-overview bg-light">
+    <div class="container">
+      <div class="overview-grid">
+        <div class="overview-text">
+          <span class="badge">About Our Craft</span>
+          <h2 class="section-title"><%= content.home.overview.title %></h2>
+          <p class="overview-body"><%= content.home.overview.body %></p>
+          <div class="overview-actions">
+            <a href="/services" class="btn btn-primary">Discover What We Do</a>
+          </div>
+        </div>
+        <div class="stats-grid">
+          <% content.home.overview.stats.forEach(function(stat) { %>
+            <div class="stat-card">
+              <div class="stat-value"><%= stat.value %></div>
+              <div class="stat-label"><%= stat.label %></div>
+            </div>
+          <% }); %>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section class="section section-testimonials">
+    <div class="container">
+      <div class="section-header text-center">
+        <span class="badge">Client Experiences</span>
+        <h2 class="section-title">Trusted by Modern Growing Brands</h2>
+      </div>
+
+      <div class="grid grid-2 testimonials-grid">
+        <% content.home.testimonials.forEach(function(t) { %>
+          <div class="card testimonial-card">
+            <span class="quote-mark" aria-hidden="true">“</span>
+            <div class="testimonial-stars" aria-label="5 stars rating">★★★★★</div>
+            <blockquote class="testimonial-quote">"<%= t.quote %>"</blockquote>
+            <div class="testimonial-author">
+              <div class="author-avatar"><%= t.author.charAt(0) %></div>
+              <div>
+                <strong class="author-name"><%= t.author %></strong>
+                <span class="author-role"><%= t.role %> <span class="verified-badge"><span class="check-icon">✓</span> Verified Client</span></span>
+              </div>
+            </div>
+          </div>
+        <% }); %>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Banner Section -->
+  <section class="section section-cta">
+    <div class="container">
+      <div class="cta-box text-center">
+        <h2 class="cta-title"><%= content.home.ctaBanner.title %></h2>
+        <p class="cta-subtitle"><%= content.home.ctaBanner.subtitle %></p>
+        <a href="<%= content.home.ctaBanner.buttonLink %>" class="btn btn-light btn-lg">
+          <%= content.home.ctaBanner.buttonText %>
+        </a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<%- include('partials/footer') %>
+<%- include('partials/scripts') %>
