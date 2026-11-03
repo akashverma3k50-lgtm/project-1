@@ -1,0 +1,217 @@
+{
+  "brand": {
+    "name": "Apex Digital Studio",
+    "tagline": "Modern Digital Solutions That Drive Tangible Results",
+    "logoText": "ApexStudio",
+    "email": "contact@apexdigital.example",
+    "phone": "+1 (555) 234-5678",
+    "location": "San Francisco, CA & Global Remote",
+    "businessHours": "Mon - Fri: 9:00 AM - 6:00 PM EST"
+  },
+  "seo": {
+    "defaultTitle": "Apex Digital Studio | Modern Web Design, Development & Optimization",
+    "defaultDescription": "A premier digital consultancy delivering responsive, ultra-fast websites, custom cloud development, and strategic digital marketing.",
+    "siteUrl": "https://apexdigital.example",
+    "ogImage": "/images/og-cover.png",
+    "twitterHandle": "@ApexDigital"
+  },
+  "home": {
+    "hero": {
+      "badge": "✨ High-Performance Web & Digital Studio",
+      "heading": "We design and build fast, modern websites that convert visitors into loyal clients.",
+      "subheading": "Apex Digital Studio creates bespoke, responsive web experiences with world-class design, rock-solid security, and lightning-fast load times. We make your business stand out effortlessly.",
+      "primaryCta": {
+        "text": "Explore Services",
+        "link": "/services"
+      },
+      "secondaryCta": {
+        "text": "Get In Touch",
+        "link": "/contact"
+      }
+    },
+    "valueProposition": {
+      "title": "Why Choose Apex Digital?",
+      "subtitle": "Built for performance, engineered for growth, and crafted to reflect your unique brand identity.",
+      "pillars": [
+        {
+          "icon": "⚡",
+          "title": "Blazing Speed & Performance",
+          "description": "Optimized down to the millisecond with resource minification, edge caching, and modern responsive assets."
+        },
+        {
+          "icon": "🛡️",
+          "title": "Enterprise Security Built-In",
+          "description": "Hardened with CSP, HSTS, CSRF protection, and automated bot defenses so your brand remains secure."
+        },
+        {
+          "icon": "📱",
+          "title": "Flawlessly Responsive",
+          "description": "Looks stunning and functions intuitively on smartphones, tablets, laptops, and ultra-wide desktops."
+        },
+        {
+          "icon": "✏️",
+          "title": "Effortless Content Updates",
+          "description": "Update text, offerings, and images in minutes through our modular content architecture without coding."
+        }
+      ]
+    },
+    "overview": {
+      "title": "Who We Are & What We Stand For",
+      "body": "We are a boutique digital craftsmanship team specializing in clean, modern web engineering. Whether you are launching a new enterprise or elevating an established brand, we cut through the noise with clarity, elegance, and uncompromised technical excellence.",
+      "stats": [
+        { "value": "99.9%", "label": "Uptime & Reliability" },
+        { "value": "<0.8s", "label": "Average Page Load" },
+        { "value": "100%", "label": "Responsive Across Devices" },
+        { "value": "24/7", "label": "Security & Monitoring" }
+      ]
+    },
+    "testimonials": [
+      {
+        "quote": "Apex completely transformed our digital presence. Inquiries doubled within our first month of launch, and the site is breathtakingly fast.",
+        "author": "Elena Vance",
+        "role": "Founder, Meridian Advisory"
+      },
+      {
+        "quote": "The cleanest handover we have ever experienced. Updating copy and services takes 2 minutes, and the spam protection works flawlessly.",
+        "author": "Marcus Sterling",
+        "role": "Managing Director, Sterling Capital"
+      }
+    ],
+    "ctaBanner": {
+      "title": "Ready to launch your new digital presence?",
+      "subtitle": "Let's turn your vision into an impactful, high-converting digital reality.",
+      "buttonText": "Start Your Project",
+      "buttonLink": "/contact"
+    }
+  },
+  "services": {
+    "header": {
+      "badge": "Our Core Capabilities",
+      "title": "Tailored Digital Services Built for Growth",
+      "subtitle": "Concise, outcome-focused offerings crafted to meet your exact business needs with zero fluff."
+    },
+    "items": [
+      {
+        "id": "web-design",
+        "icon": "🎨",
+        "title": "Bespoke Web Design",
+        "summary": "Clean, light, modern aesthetics crafted specifically around your brand voice and customer journey.",
+        "details": "We design intuitive user interfaces that capture attention immediately and guide visitors effortlessly toward taking action. Every visual element is crafted with precision, accessibility, and elegance.",
+        "deliverables": [
+          "Custom UI/UX visual design & typography system",
+          "100% responsive layouts (mobile, tablet, desktop)",
+          "Accessible color palettes & WCAG 2.1 compliant contrast",
+          "Interactive component prototypes & brand guidelines"
+        ],
+        "badge": "Popular",
+        "image": "/images/service-design.jpg"
+      },
+      {
+        "id": "web-development",
+        "icon": "💻",
+        "title": "Full-Stack Web Engineering",
+        "summary": "Standards-compliant, ultra-fast websites engineered with modern security, clean code, and zero technical debt.",
+        "details": "From robust server architecture and enterprise HTTP security headers to server-side caching and automated testing, we deliver bulletproof web solutions that scale effortlessly.",
+        "deliverables": [
+          "Production-ready TypeScript & semantic HTML5/CSS",
+          "Automated CSRF, CSP, HSTS, and bot protection",
+          "Database integration with parameterized queries",
+          "Modular content structure for rapid copy updates"
+        ],
+        "badge": "Core",
+        "image": "/images/service-security.jpg"
+      },
+      {
+        "id": "optimization-seo",
+        "icon": "🚀",
+        "title": "Speed Optimization & Lightweight SEO",
+        "summary": "Maximized Core Web Vitals, edge CDN caching, and semantic search engine discovery setup.",
+        "details": "We optimize assets, configure compression, fine-tune caching headers, and embed structured JSON-LD schema so your site ranks well on Google and loads near-instantaneously.",
+        "deliverables": [
+          "Sub-second load times & Google Core Web Vitals audit",
+          "Meta tags, Open Graph & Twitter Card social previews",
+          "Dynamic sitemap.xml & search engine robots.txt",
+          "Privacy-friendly on-page analytics tracking"
+        ],
+        "badge": "Growth",
+        "image": "/images/service-speed.jpg"
+      },
+      {
+        "id": "maintenance-handover",
+        "icon": "🤝",
+        "title": "Documentation & Easy Handover",
+        "summary": "Comprehensive client documentation ensuring you maintain full control of your site without friction.",
+        "details": "We provide complete source files and clear, jargon-free handover notes. You can update any text or swap imagery yourself in minutes without needing a developer.",
+        "deliverables": [
+          "Complete source code repository with CI/CD workflows",
+          "Clear Step-by-Step Client Handover Manual (HANDOVER.md)",
+          "Spam-protected contact form connected to your email",
+          "Self-service content configuration file"
+        ],
+        "badge": "Included",
+        "image": "/images/service-handover.svg"
+      }
+    ],
+    "process": [
+      {
+        "step": "01",
+        "title": "Discovery & Strategy",
+        "description": "We clarify your brand objectives, key offerings, and target customer profiles to craft the perfect site architecture."
+      },
+      {
+        "step": "02",
+        "title": "Design & Prototyping",
+        "description": "We build sleek, modern mockups that embody light, professional branding and seamless mobile responsiveness."
+      },
+      {
+        "step": "03",
+        "title": "Engineering & Hardening",
+        "description": "We write clean, semantic code with enterprise HTTP headers, CSP, CSRF, and automated unit/integration tests."
+      },
+      {
+        "step": "04",
+        "title": "Testing & Handover",
+        "description": "We verify end-to-end forms, test across device viewports, and hand over the site with easy copy-editing notes."
+      }
+    ]
+  },
+  "contact": {
+    "header": {
+      "badge": "Let's Connect",
+      "title": "Start Your Project or Inquire Today",
+      "subtitle": "Have a question or need a quote? Send us a message and our team will respond within 24 business hours."
+    },
+    "info": {
+      "addressTitle": "Headquarters",
+      "address": "500 Howard Street, Suite 400, San Francisco, CA 94105",
+      "emailTitle": "Direct Email",
+      "email": "inquiries@apexdigital.example",
+      "phoneTitle": "Phone Support",
+      "phone": "+1 (555) 234-5678",
+      "hoursTitle": "Operating Hours",
+      "hours": "Monday to Friday: 9am - 6pm EST"
+    },
+    "form": {
+      "nameLabel": "Your Full Name",
+      "namePlaceholder": "Jane Doe",
+      "emailLabel": "Email Address",
+      "emailPlaceholder": "jane@example.com",
+      "subjectLabel": "Subject / Interest",
+      "subjectPlaceholder": "Select a subject / interest from list...",
+      "subjectOptions": [
+        "Website Redesign & Development",
+        "Bespoke UI/UX Design & Prototyping",
+        "Enterprise Cloud Architecture & Security",
+        "Speed Optimization & Core Web Vitals",
+        "Custom Web Application Engineering",
+        "Ongoing Maintenance & Tech Support",
+        "Other / General Consultation"
+      ],
+      "messageLabel": "Your Message",
+      "messagePlaceholder": "Tell us about your project, timeline, and goals...",
+      "submitButtonText": "Send Message",
+      "successMessage": "Thank you! Your message has been received safely. We will get back to you shortly.",
+      "errorMessage": "An error occurred while submitting your inquiry. Please try again or email us directly."
+    }
+  }
+}

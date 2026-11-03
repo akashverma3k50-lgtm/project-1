@@ -1,0 +1,55 @@
+<footer class="site-footer">
+  <div class="container footer-container">
+    <div class="footer-grid">
+      <div class="footer-col brand-col">
+        <a href="/" class="brand-logo footer-logo">
+          <span class="logo-mark">▲</span>
+          <span class="logo-text"><%= content.brand.logoText %></span>
+        </a>
+        <p class="footer-tagline"><%= content.brand.tagline %></p>
+        <div class="security-badges">
+          <span class="badge-item">🔒 HTTPS Enforced</span>
+          <span class="badge-item">🛡️ CSP & CSRF Protected</span>
+        </div>
+      </div>
+
+      <div class="footer-col nav-col">
+        <h4 class="footer-heading">Quick Links</h4>
+        <ul class="footer-links">
+          <li><a href="/">Home</a></li>
+          <li><a href="/services">Services</a></li>
+          <li><a href="/contact">Contact</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col services-col">
+        <h4 class="footer-heading">Offerings</h4>
+        <ul class="footer-links">
+          <% content.services.items.forEach(function(item) { %>
+            <li><a href="/services#<%= item.id %>"><%= item.title %></a></li>
+          <% }); %>
+        </ul>
+      </div>
+
+      <div class="footer-col contact-col">
+        <h4 class="footer-heading">Get In Touch</h4>
+        <p class="contact-item"><strong>Email:</strong> <a href="mailto:<%= content.brand.email %>"><%= content.brand.email %></a></p>
+        <p class="contact-item"><strong>Phone:</strong> <a href="tel:<%= content.brand.phone.replace(/[^0-9+]/g, '') %>"><%= content.brand.phone %></a></p>
+        <p class="contact-item"><strong>Office:</strong> <%= content.brand.location %></p>
+        <p class="contact-item"><strong>Hours:</strong> <%= content.brand.businessHours %></p>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>&copy; <%= new Date().getFullYear() %> <%= content.brand.name %>. All rights reserved. Standards-compliant HTML5/CSS.</p>
+    </div>
+  </div>
+
+  <!-- Floating Scroll to Top Quick Action Button -->
+  <button class="scroll-top-btn" id="scrollTopBtn" type="button" aria-label="Scroll to top of page" title="Scroll to top">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <line x1="12" y1="19" x2="12" y2="5"></line>
+      <polyline points="5 12 12 5 19 12"></polyline>
+    </svg>
+  </button>
+</footer>

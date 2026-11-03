@@ -1,0 +1,117 @@
+<%- include('partials/head') %>
+<%- include('partials/header') %>
+
+<main id="mainContent">
+  <!-- Services Hero Header -->
+  <section class="page-header">
+    <div class="ambient-glow-orb orb-1" aria-hidden="true"></div>
+    <div class="ambient-glow-orb orb-2" aria-hidden="true"></div>
+    <div class="container text-center">
+      <div class="page-back-wrapper">
+        <a href="/" class="page-back-link" aria-label="Go back" title="Go back">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <line x1="19" y1="12" x2="5" y2="12"></line>
+            <polyline points="12 19 5 12 12 5"></polyline>
+          </svg>
+        </a>
+      </div>
+      <span class="badge"><%= content.services.header.badge %></span>
+      <h1 class="page-title"><%= content.services.header.title %></h1>
+      <p class="page-subtitle"><%= content.services.header.subtitle %></p>
+    </div>
+  </section>
+
+  <!-- Services Offering List -->
+  <section class="section section-services-list">
+    <div class="container">
+      <div class="services-stack">
+        <% content.services.items.forEach(function(item, index) { %>
+          <article class="service-detail-card" id="<%= item.id %>">
+            <div class="service-card-body-grid">
+              <div class="service-content-col">
+                <div class="service-card-header">
+                  <div class="service-card-meta">
+                    <span class="service-icon" aria-hidden="true"><%= item.icon %></span>
+                    <div>
+                      <% if (item.badge) { %>
+                        <span class="badge badge-accent"><%= item.badge %></span>
+                      <% } %>
+                      <h2 class="service-title"><%= item.title %></h2>
+                    </div>
+                  </div>
+                </div>
+
+                <p class="service-summary"><%= item.summary %></p>
+                <p class="service-description"><%= item.details %></p>
+
+                <div class="service-deliverables">
+                  <h3 class="deliverables-heading">What We Deliver:</h3>
+                  <ul class="deliverables-list">
+                    <% item.deliverables.forEach(function(deliv) { %>
+                      <li class="deliverable-item">
+                        <span class="check-icon" aria-hidden="true">✓</span>
+                        <span><%= deliv %></span>
+                      </li>
+                    <% }); %>
+                  </ul>
+                </div>
+
+                <div class="service-action-row">
+                  <a href="/contact?service=<%= encodeURIComponent(item.title) %>" class="btn btn-primary btn-sm">
+                    Inquire About <%= item.title %> &rarr;
+                  </a>
+                </div>
+              </div>
+
+              <% if (item.image) { %>
+                <div class="service-graphic-col" aria-hidden="true">
+                  <div class="service-img-wrapper">
+                    <img src="<%= item.image %>" alt="<%= item.title %> Graphic Preview" class="service-graphic-img" loading="lazy">
+                    <div class="graphic-overlay-pill">
+                      <span>✦ Enterprise Quality</span>
+                    </div>
+                  </div>
+                </div>
+              <% } %>
+            </div>
+          </article>
+        <% }); %>
+      </div>
+    </div>
+  </section>
+
+  <!-- Process Section -->
+  <section class="section section-process bg-light">
+    <div class="container">
+      <div class="section-header text-center">
+        <span class="badge">How We Work</span>
+        <h2 class="section-title">A Seamless, Transparent 4-Step Process</h2>
+        <p class="section-subtitle">From initial concept to deployment and complete client handover.</p>
+      </div>
+
+      <div class="grid grid-4 process-grid">
+        <% content.services.process.forEach(function(step) { %>
+          <div class="process-card">
+            <div class="process-step-num"><%= step.step %></div>
+            <h3 class="process-title"><%= step.title %></h3>
+            <p class="process-desc"><%= step.description %></p>
+          </div>
+        <% }); %>
+      </div>
+    </div>
+  </section>
+
+  <!-- Bottom CTA -->
+  <section class="section section-cta">
+    <div class="container">
+      <div class="cta-box text-center">
+        <h2 class="cta-title">Need a tailored solution for your business?</h2>
+        <p class="cta-subtitle">We work closely with you to deliver exactly what you need on time and on budget.</p>
+        <a href="/contact" class="btn btn-light btn-lg">Request a Free Proposal</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<%- include('partials/footer') %>
+<%- include('partials/scripts') %>

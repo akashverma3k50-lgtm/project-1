@@ -1,0 +1,188 @@
+<%- include('partials/head') %>
+<%- include('partials/header') %>
+
+<main id="mainContent">
+  <!-- Contact Page Header -->
+  <section class="page-header">
+    <div class="ambient-glow-orb orb-1" aria-hidden="true"></div>
+    <div class="ambient-glow-orb orb-2" aria-hidden="true"></div>
+    <div class="container text-center">
+      <div class="page-back-wrapper">
+        <a href="/" class="page-back-link" aria-label="Go back" title="Go back">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <line x1="19" y1="12" x2="5" y2="12"></line>
+            <polyline points="12 19 5 12 12 5"></polyline>
+          </svg>
+        </a>
+      </div>
+      <span class="badge"><%= content.contact.header.badge %></span>
+      <h1 class="page-title"><%= content.contact.header.title %></h1>
+      <p class="page-subtitle"><%= content.contact.header.subtitle %></p>
+    </div>
+  </section>
+
+  <!-- Contact Form & Info Section -->
+  <section class="section section-contact">
+    <div class="container">
+      <div class="contact-layout">
+        <!-- Contact Information Sidecard -->
+        <aside class="contact-info-card">
+          <div class="contact-graphic-banner" aria-hidden="true">
+            <img src="/images/contact-illustration.svg" alt="Direct Communication & Security Illustration" class="contact-graphic-img">
+          </div>
+          <h2 class="info-card-title">Get in Touch Directly</h2>
+          <p class="info-card-desc">Prefer email or phone? Reach out to us through any of our direct channels below.</p>
+
+          <div class="info-list">
+            <div class="info-item">
+              <span class="info-icon" aria-hidden="true">📍</span>
+              <div>
+                <strong><%= content.contact.info.addressTitle %></strong>
+                <p><%= content.contact.info.address %></p>
+              </div>
+            </div>
+
+            <div class="info-item">
+              <span class="info-icon" aria-hidden="true">✉️</span>
+              <div>
+                <strong><%= content.contact.info.emailTitle %></strong>
+                <p><a href="mailto:<%= content.contact.info.email %>"><%= content.contact.info.email %></a></p>
+              </div>
+            </div>
+
+            <div class="info-item">
+              <span class="info-icon" aria-hidden="true">📞</span>
+              <div>
+                <strong><%= content.contact.info.phoneTitle %></strong>
+                <p><a href="tel:<%= content.contact.info.phone.replace(/[^0-9+]/g, '') %>"><%= content.contact.info.phone %></a></p>
+              </div>
+            </div>
+
+            <div class="info-item">
+              <span class="info-icon" aria-hidden="true">⏰</span>
+              <div>
+                <strong><%= content.contact.info.hoursTitle %></strong>
+                <p><%= content.contact.info.hours %></p>
+              </div>
+            </div>
+          </div>
+
+          <div class="security-guarantee">
+            <span class="guarantee-icon" aria-hidden="true">🔒</span>
+            <div>
+              <strong>Privacy Guaranteed</strong>
+              <p>Your details are stored securely with parameterized encryption and will never be shared or spammed.</p>
+            </div>
+          </div>
+        </aside>
+
+        <!-- Straightforward Contact Form -->
+        <div class="contact-form-wrapper">
+          <!-- Live Announcement Container for Screen Readers & Alert Status -->
+          <div id="formAlert" class="alert d-none" role="alert" aria-live="polite"></div>
+
+          <form id="contactForm" class="contact-form" action="/api/contact" method="POST" novalidate>
+            <!-- Anti-CSRF Token -->
+            <input type="hidden" name="_csrf" id="csrfToken" value="<%= csrfToken %>">
+
+            <!-- Anti-Bot Honeypot Field (Hidden from humans & screen readers) -->
+            <div class="honeypot-field" aria-hidden="true" style="display:none !important; visibility:hidden; opacity:0; position:absolute; left:-9999px;">
+              <label for="website_url_hp">Leave this field blank</label>
+              <input type="text" name="website_url_hp" id="website_url_hp" tabindex="-1" autocomplete="off">
+            </div>
+
+            <!-- Anti-Bot Submission Velocity Timestamp -->
+            <input type="hidden" name="form_timestamp" id="formTimestamp" value="<%= formTimestamp %>">
+
+            <!-- Name Field -->
+            <div class="form-group">
+              <label for="name" class="form-label"><%= content.contact.form.nameLabel %> <span class="required">*</span></label>
+              <input 
+                type="text" 
+                id="name" 
+                name="name" 
+                class="form-input" 
+                placeholder="<%= content.contact.form.namePlaceholder %>" 
+                required 
+                minlength="2" 
+                maxlength="100"
+                autocomplete="name"
+              >
+              <span class="field-error" id="nameError" aria-live="polite"></span>
+            </div>
+
+            <!-- Email Field -->
+            <div class="form-group">
+              <label for="email" class="form-label"><%= content.contact.form.emailLabel %> <span class="required">*</span></label>
+              <input 
+                type="email" 
+                id="email" 
+                name="email" 
+                class="form-input" 
+                placeholder="<%= content.contact.form.emailPlaceholder %>" 
+                required 
+                maxlength="254"
+                autocomplete="email"
+              >
+              <span class="field-error" id="emailError" aria-live="polite"></span>
+            </div>
+
+            <!-- Subject / Interest Field (Scrollable Select Dropdown) -->
+            <div class="form-group">
+              <label for="subject" class="form-label"><%= content.contact.form.subjectLabel %> <span class="required">*</span></label>
+              <select 
+                id="subject" 
+                name="subject" 
+                class="form-input form-select" 
+                required
+              >
+                <option value="" disabled selected><%= content.contact.form.subjectPlaceholder %></option>
+                <% if (content.contact.form.subjectOptions && content.contact.form.subjectOptions.length) { %>
+                  <% content.contact.form.subjectOptions.forEach(function(opt) { %>
+                    <option value="<%= opt %>"><%= opt %></option>
+                  <% }); %>
+                <% } else { %>
+                  <option value="Website Redesign & Development">Website Redesign & Development</option>
+                  <option value="Bespoke UI/UX Design & Prototyping">Bespoke UI/UX Design & Prototyping</option>
+                  <option value="Enterprise Cloud Architecture & Security">Enterprise Cloud Architecture & Security</option>
+                  <option value="Speed Optimization & Core Web Vitals">Speed Optimization & Core Web Vitals</option>
+                  <option value="Custom Web Application Engineering">Custom Web Application Engineering</option>
+                  <option value="Ongoing Maintenance & Tech Support">Ongoing Maintenance & Tech Support</option>
+                  <option value="Other / General Consultation">Other / General Consultation</option>
+                <% } %>
+              </select>
+              <span class="field-error" id="subjectError" aria-live="polite"></span>
+            </div>
+
+            <!-- Message Field -->
+            <div class="form-group">
+              <label for="message" class="form-label"><%= content.contact.form.messageLabel %> <span class="required">*</span></label>
+              <textarea 
+                id="message" 
+                name="message" 
+                class="form-textarea" 
+                rows="5" 
+                placeholder="<%= content.contact.form.messagePlaceholder %>" 
+                required 
+                minlength="10" 
+                maxlength="5000"
+              ></textarea>
+              <span class="field-error" id="messageError" aria-live="polite"></span>
+            </div>
+
+            <!-- Submit Button & Loader -->
+            <div class="form-actions">
+              <button type="submit" id="submitBtn" class="btn btn-primary btn-lg btn-block">
+                <span class="btn-text"><%= content.contact.form.submitButtonText %></span>
+                <span class="btn-spinner d-none" aria-hidden="true"></span>
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<%- include('partials/footer') %>
+<%- include('partials/scripts') %>
