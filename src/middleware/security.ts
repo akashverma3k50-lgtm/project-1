@@ -1,5 +1,22 @@
 import type { Request, Response, NextFunction } from 'express';
 import helmet from 'helmet';
+import type { HelmetOptions } from 'helmet';
+
+// Interop wrapper supporting both ESM callable default and CJS module namespace
+type HelmetMiddleware = (req: Request, res: Response, next: NextFunction) => void;
+type HelmetFactory = (options?: HelmetOptions) => HelmetMiddleware;
+
+const getHelmet = (): HelmetFactory => {
+  if (typeof helmet === 'function') {
+    return helmet as unknown as HelmetFactory;
+  }
+  if (typeof (helmet as unknown as { default?: HelmetFactory }).default === 'function') {
+    return (helmet as unknown as { default: HelmetFactory }).default;
+  }
+  return helmet as unknown as HelmetFactory;
+};
+
+const helmetFn = getHelmet();
 import { config } from '../config/index.js';
 import { logger } from '../logger/index.js';
 
@@ -24,7 +41,7 @@ export function enforceHttps(req: Request, res: Response, next: NextFunction): v
 /**
  * Configure comprehensive HTTP security headers via Helmet
  */
-export const configureSecurityHeaders = helmet({
+export const configureSecurityHeaders = helmetFn({
   contentSecurityPolicy: {
     directives: {
       defaultSrc: ["'self'"],
