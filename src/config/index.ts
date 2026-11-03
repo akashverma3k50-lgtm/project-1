@@ -1,5 +1,6 @@
 import dotenv from 'dotenv';
 import path from 'node:path';
+import fs from 'node:fs';
 import { fileURLToPath } from 'node:url';
 
 dotenv.config();
@@ -7,10 +8,21 @@ dotenv.config();
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 export const ROOT_DIR = path.resolve(__dirname, '../../');
+const isVercel = Boolean(process.env.VERCEL);
+
+function resolveFirstExisting(candidates: string[]): string {
+  for (const candidate of candidates) {
+    if (fs.existsSync(candidate)) {
+      return candidate;
+    }
+  }
+  return candidates[0]!;
+}
 
 export const config = {
   env: process.env.NODE_ENV || 'development',
   isProduction: process.env.NODE_ENV === 'production',
+  isVercel,
   port: parseInt(process.env.PORT || '3000', 10),
   host: process.env.HOST || '0.0.0.0',
 
@@ -41,8 +53,20 @@ export const config = {
     notificationEmail: process.env.CONTACT_NOTIFICATION_EMAIL || 'inquiries@example.com',
   },
 
-  dbPath: process.env.DB_PATH || path.join(ROOT_DIR, 'data', 'app.db'),
-  contentPath: path.join(ROOT_DIR, 'content', 'site-content.json'),
-  publicDir: path.join(ROOT_DIR, 'public'),
-  viewsDir: path.join(ROOT_DIR, 'src', 'views'),
+  dbPath:
+    process.env.DB_PATH ||
+    (isVercel ? path.join('/tmp', 'app.db') : path.join(ROOT_DIR, 'data', 'app.db')),
+  contentPath: resolveFirstExisting([
+    path.join(process.cwd(), 'content', 'site-content.json'),
+    path.join(ROOT_DIR, 'content', 'site-content.json'),
+  ]),
+  publicDir: resolveFirstExisting([
+    path.join(process.cwd(), 'public'),
+    path.join(ROOT_DIR, 'public'),
+  ]),
+  viewsDir: resolveFirstExisting([
+    path.join(process.cwd(), 'src', 'views'),
+    path.join(ROOT_DIR, 'src', 'views'),
+    path.join(process.cwd(), 'views'),
+  ]),
 };
