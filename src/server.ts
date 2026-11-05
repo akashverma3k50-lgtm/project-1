@@ -1,9 +1,9 @@
-import { createApp } from './app.js';
+import app from './app.js';
 import { config } from './config/index.js';
 import { logger } from './logger/index.js';
 import { closeDatabase, getDatabase } from './database/db.js';
 
-export const app = createApp();
+export { app };
 
 // Only start HTTP listener and process traps in standalone server mode (not serverless / Vercel)
 if (!config.isVercel) {

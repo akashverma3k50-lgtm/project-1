@@ -1,9 +1,20 @@
-import Database, { type Database as DatabaseType } from 'better-sqlite3';
+import type { Database as DatabaseType } from 'better-sqlite3';
+import { createRequire } from 'node:module';
 import fs from 'node:fs';
 import path from 'node:path';
 import { config } from '../config/index.js';
 import { logger } from '../logger/index.js';
 import type { ContactSubmissionRecord } from '../types/index.js';
+
+const require = createRequire(import.meta.url);
+type DatabaseCtor = new (filename: string, options?: unknown) => DatabaseType;
+
+let DatabaseConstructor: DatabaseCtor | null = null;
+try {
+  DatabaseConstructor = require('better-sqlite3') as DatabaseCtor;
+} catch (loadErr) {
+  logger.warn({ loadErr }, 'better-sqlite3 native module not available; resilient fallback store active');
+}
 
 let dbInstance: DatabaseType | null = null;
 
@@ -53,6 +64,9 @@ function createFallbackDatabase(): unknown {
           if (lower.includes('select 1 as ping')) {
             return { ping: 1 };
           }
+          if (lower.includes('count(*)')) {
+            return { count: 0 };
+          }
           return null;
         },
         all(..._params: unknown[]) {
@@ -75,6 +89,12 @@ function createFallbackDatabase(): unknown {
 export function getDatabase(): DatabaseType {
   if (dbInstance) return dbInstance;
 
+  if (!DatabaseConstructor) {
+    logger.warn('SQLite native binding unavailable; using resilient fallback store');
+    dbInstance = createFallbackDatabase() as unknown as DatabaseType;
+    return dbInstance;
+  }
+
   try {
     const dbDir = path.dirname(config.dbPath);
     if (!fs.existsSync(dbDir)) {
@@ -86,7 +106,7 @@ export function getDatabase(): DatabaseType {
     }
 
     logger.info({ path: config.dbPath }, 'Initializing SQLite database connection...');
-    const db = new Database(config.dbPath);
+    const db = new DatabaseConstructor(config.dbPath);
 
     // In serverless / read-only / /tmp environments, journal mode pragmas should be guarded
     try {
@@ -112,7 +132,10 @@ export function getDatabase(): DatabaseType {
   } catch (diskErr) {
     logger.warn({ diskErr }, 'Disk database failed, falling back to in-memory SQLite');
     try {
-      const memDb = new Database(':memory:');
+      if (!DatabaseConstructor) {
+        throw new Error('better-sqlite3 native binding unavailable', { cause: diskErr });
+      }
+      const memDb = new DatabaseConstructor(':memory:');
       try {
         memDb.pragma('foreign_keys = ON');
       } catch {
